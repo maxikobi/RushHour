@@ -9,7 +9,17 @@ public class Plate : InteractableItem
         return true;
     }
 
+    public override bool CanTakeItem()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void PlaceItem(Item item)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Item TakeItem()
     {
         throw new System.NotImplementedException();
     }

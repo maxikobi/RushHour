@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Chef : MonoBehaviour
+public class Chef : NetworkBehaviour
 {
     [SerializeField] float speed = 5;
     [SerializeField] float distance = 0.5f;
@@ -20,8 +17,15 @@ public class Chef : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
         MovePlayer();
-        
+
+        Interactions();
+    }
+
+    private void Interactions()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             if (TryGetWorkstation(out var workstation))
