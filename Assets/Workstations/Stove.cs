@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Stove : Workstation
 {
-
-    bool cooking = false;
-    float timeCooking = 0;
-
     public override void PlaceItem(Item item)
     {
-        if (placedItem != null && placedItem is Pot)
-            cooking = true;
+        base.PlaceItem(item);
+        if (placedItem is Pot pot)
+        {
+            pot.onStove = true;
+            pot.checkCook();
+        }
+            
     }
 
     public override Item TakeItem()
     {
-        if (cooking){
-            cooking = false;
-            timeCooking = 0;
-        }
         return base.TakeItem();
     }
 

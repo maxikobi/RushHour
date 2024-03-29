@@ -1,6 +1,6 @@
 
 
-public class Ingredient : Item
+public abstract class Ingredient : Item
 {
-    
+
 }

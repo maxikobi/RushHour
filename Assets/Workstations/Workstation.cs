@@ -19,7 +19,7 @@ public abstract class Workstation : MonoBehaviour
 
     public virtual void PlaceItem(Item item)
     {
-        if (!(placedItem = null))
+        if (placedItem != null) // = 1, == 2 ???
         {
             item.transform.SetParent(attach, false);
         }
@@ -42,7 +42,9 @@ public abstract class Workstation : MonoBehaviour
 
     public virtual Item TakeItem()
     {
-        return placedItem;
+        Item result = placedItem;
+        placedItem = null;
+        return result;
     }
 
 #endregion
