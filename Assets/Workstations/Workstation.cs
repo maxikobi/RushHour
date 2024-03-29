@@ -6,26 +6,42 @@ public abstract class Workstation : MonoBehaviour
 {
     [SerializeField] protected Transform attach;
     protected Item placedItem;
+    
 
 #region Placing
     public virtual bool CanPlaceItem(Item item){
+    
         if (placedItem == null) return true; 
         if (item is not InteractableItem interactableItem) return false;
-        return interactableItem.TryPlaceItem(item);
+        return interactableItem.CanPlaceItem(item);
     }
+    
 
-    public virtual void PlaceItem(Item item){
+    public virtual void PlaceItem(Item item)
+    {
+        if (!(placedItem = null))
+        {
+            item.transform.SetParent(attach, false);
+        }
+        else
+        {
+            if (placedItem is InteractableItem interactable)
+                interactable.PlaceItem(item);
+        }
         placedItem = item;
-        item.transform.SetParent(attach, false);
     }
+    
 
 #endregion
 
 #region Taking
+    
     public virtual bool CanTakeItem(){
         return placedItem != null;
     }
-    public virtual Item TakeItem(){
+
+    public virtual Item TakeItem()
+    {
         return placedItem;
     }
 

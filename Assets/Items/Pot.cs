@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Pot : InteractableItem
 {
-    public override bool TryPlaceItem(Item item)
+    public override bool CanPlaceItem(Item item)
     {
-        return true;
+        return false;
+    }
+
+    public override void PlaceItem(Item item)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class InteractableItem : Item
 {
-    public abstract bool TryPlaceItem(Item item);
+    public abstract bool CanPlaceItem(Item item);
+    public abstract void PlaceItem(Item item);
 }

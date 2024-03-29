@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PlateRack : Workstation
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] GameObject platePrefab;
+
+    public override bool CanPlaceItem(Item item)
     {
-        
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool CanTakeItem()
     {
-        
+        return true;
+    }
+
+    public override void PlaceItem(Item item)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Item TakeItem()
+    {
+        return Instantiate(platePrefab).GetComponent<Item>();
     }
 }
