@@ -24,27 +24,34 @@ public class Chef : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
-            if (!TryGetWorkstation(out var workstation)) return;
-
-            workstation.Interact();
+            if (TryGetWorkstation(out var workstation))
+                workstation.Interact();
         }
 
         if (Input.GetMouseButtonDown(1))
-        {
-            if (!TryGetWorkstation(out var workstation)) return;
+            TakeOrPlace();
+    }
 
-            if (heldItem == null)
-                if (workstation.TryTakeItem(out Item item))
+    private void TakeOrPlace()
+    {
+        if (!TryGetWorkstation(out var workstation)) return;
+
+        if (heldItem == null)
+        {
+            if (workstation.CanTakeItem())
+            {
+                heldItem = workstation.TakeItem();
+                heldItem.transform.SetParent(handAttach, false);
+            }
+            else
+            {
+                if (workstation.CanPlaceItem(heldItem))
                 {
-                    heldItem = item;
-                    item.transform.SetParent(handAttach, false);
+                    workstation.PlaceItem(heldItem);
+                    heldItem = null;
                 }
-                else
-                {
-                    if (workstation.TryPlaceItem(heldItem))
-                        heldItem = null;
-                }
-        } 
+            }
+        }
     }
 
     private void MovePlayer()
