@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Stove : Workstation
 {
-    
     bool potPlaced = false;
 
     public override bool TryPlaceItem(Item item)
@@ -20,7 +19,7 @@ public class Stove : Workstation
 
     }
 
-    
+
     // Update is called once per frame
     void Update()
     {
