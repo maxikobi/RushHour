@@ -13,4 +13,14 @@ public class Plate : InteractableItem
     {
         throw new System.NotImplementedException();
     }
+
+    public override bool CanTakeItem()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Item TakeItem()
+    {
+        throw new System.NotImplementedException();
+    }
 }
