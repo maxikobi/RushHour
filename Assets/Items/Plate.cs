@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Plate : InteractableItem
 {
+    [SerializeField] private Transform inside;
+    private Item itemOn = null;
+    
     public override bool CanPlaceItem(Item item)
     {
+
         return true;
     }
 
